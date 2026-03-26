@@ -112,26 +112,30 @@ mentor-graph/
   docs/
     PRD.md
     TECH_STACK.md
-  src/
-    main.tsx
-    pages/
-      Home.tsx
-    components/
-      InputPanel.tsx
-      MentorTree.tsx
-      InsightsPanel.tsx
-    lib/
-      ai/
-        extractMentors.ts
-      classify/
-        classifyDomains.ts
-      insight/
-        generateInsights.ts
-      schemas/
-        analyze.ts
-  server/
+  app/
+    layout.tsx
+    page.tsx
+    globals.css
     api/
+      analyze/
+        route.ts
+  components/
+    InputPanel.tsx
+    MentorTree.tsx
+    InsightsPanel.tsx
+  lib/
+    ai/
+      extractMentors.ts
+    insight/
+      generateInsights.ts
+    schemas/
       analyze.ts
+  public/
+  package.json
+  tsconfig.json
+  postcss.config.cjs
+  next.config.js
+  .env.example
 ```
 
 ---
