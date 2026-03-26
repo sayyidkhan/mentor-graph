@@ -1,5 +1,5 @@
 import OpenAI from "openai";
-import { DOMAINS } from "../schemas/analyze";
+import { DOMAINS, type AnalyzeModelId } from "../schemas/analyze";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -7,9 +7,10 @@ const openai = new OpenAI({
 
 export async function extractAndClassify(
   text: string,
+  model: AnalyzeModelId,
 ): Promise<{ mentors: string[]; domains: Record<string, string[]> }> {
   const response = await openai.chat.completions.create({
-    model: "gpt-4o-mini",
+    model,
     temperature: 0.2,
     response_format: { type: "json_object" },
     messages: [

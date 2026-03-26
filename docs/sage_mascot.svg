@@ -1,0 +1,241 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="100%" height="100%">
+  <defs>
+    <!-- Background Space/Nebula Gradient -->
+    <radialGradient id="spaceGradient" cx="50%" cy="50%" r="70%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="60%" stop-color="#020617" />
+      <stop offset="100%" stop-color="#000000" />
+    </radialGradient>
+
+    <!-- Mystic Nebula Glow behind the Sage -->
+    <radialGradient id="nebulaGlow" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.15" />
+      <stop offset="40%" stop-color="#818cf8" stop-opacity="0.05" />
+      <stop offset="100%" stop-color="#020617" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Glowing effects -->
+    <filter id="hyperGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="12" result="blur1" />
+      <feGaussianBlur stdDeviation="24" result="blur2" />
+      <feGaussianBlur stdDeviation="4" result="blur3" />
+      <feMerge>
+        <feMergeNode in="blur2" />
+        <feMergeNode in="blur1" />
+        <feMergeNode in="blur3" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="subtleGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <!-- Complex Cloak Gradients for Depth -->
+    <linearGradient id="cloakMain" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="50%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+
+    <linearGradient id="cloakHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#334155" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0"/>
+    </linearGradient>
+
+    <linearGradient id="cloakFold" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#020617" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.2"/>
+    </linearGradient>
+
+    <!-- Metallic/Energy gradients for the Staff -->
+    <linearGradient id="staffGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#334155" />
+      <stop offset="30%" stop-color="#94a3b8" />
+      <stop offset="70%" stop-color="#475569" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+
+    <radialGradient id="coreEnergy" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="20%" stop-color="#bae6fd" />
+      <stop offset="60%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0284c7" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Deep Space Background -->
+  <rect width="800" height="800" fill="url(#spaceGradient)" />
+  
+  <!-- Ambient Nebula -->
+  <circle cx="400" cy="350" r="350" fill="url(#nebulaGlow)" />
+
+  <!-- Background Data Grid / Constellation -->
+  <g stroke="#1e293b" stroke-width="1.5" opacity="0.6">
+    <!-- Perspective Grid Lines -->
+    <path d="M 0 600 L 800 600" />
+    <path d="M 0 650 L 800 650" />
+    <path d="M 0 720 L 800 720" />
+    <path d="M 400 600 L 100 800" />
+    <path d="M 400 600 L 300 800" />
+    <path d="M 400 600 L 500 800" />
+    <path d="M 400 600 L 700 800" />
+  </g>
+
+  <!-- Distant Network Nodes -->
+  <g stroke="#38bdf8" stroke-width="1" fill="none" opacity="0.15">
+    <path d="M 150 200 L 250 120 L 450 160 L 650 220 L 550 350 L 200 400 Z" />
+    <path d="M 250 120 L 550 350" />
+    <path d="M 150 200 L 450 160" />
+  </g>
+  <g fill="#38bdf8" opacity="0.3">
+    <circle cx="150" cy="200" r="4" filter="url(#subtleGlow)"/>
+    <circle cx="250" cy="120" r="5" filter="url(#subtleGlow)"/>
+    <circle cx="450" cy="160" r="3" />
+    <circle cx="650" cy="220" r="6" filter="url(#subtleGlow)"/>
+    <circle cx="550" cy="350" r="4" />
+    <circle cx="200" cy="400" r="5" />
+  </g>
+
+  <!-- ================= SAGE FIGURE ================= -->
+  <!-- Back Cloak Layer -->
+  <path d="M 280 700 C 250 500, 320 400, 400 400 C 480 400, 550 500, 520 700 Z" fill="#020617" />
+
+  <!-- Shoulders / Main Cloak Body -->
+  <path d="M 220 750 C 220 520, 300 420, 400 420 C 500 420, 580 520, 580 750 Z" fill="url(#cloakMain)" />
+  
+  <!-- Cloak Highlights & Folds for Depth -->
+  <!-- Left fold -->
+  <path d="M 220 750 C 220 600, 280 480, 340 430 C 300 500, 270 650, 280 750 Z" fill="url(#cloakHighlight)" />
+  <!-- Right fold -->
+  <path d="M 580 750 C 580 600, 520 480, 460 430 C 500 500, 530 650, 520 750 Z" fill="url(#cloakHighlight)" />
+  <!-- Center deep shadow -->
+  <path d="M 360 550 C 360 500, 400 450, 440 550 C 420 650, 430 750, 430 750 L 370 750 C 370 750, 380 650, 360 550 Z" fill="url(#cloakFold)" />
+
+  <!-- Hood Exterior -->
+  <path d="M 300 430 C 280 280, 520 280, 500 430 C 520 520, 400 550, 400 550 C 400 550, 280 520, 300 430 Z" fill="url(#cloakMain)" />
+  <!-- Hood Highlight Rim -->
+  <path d="M 300 430 C 280 280, 520 280, 500 430 C 490 300, 310 300, 300 430 Z" fill="url(#cloakHighlight)" />
+
+  <!-- Hood Interior (The Void) -->
+  <path d="M 330 420 C 330 350, 470 350, 470 420 C 470 480, 400 510, 400 510 C 400 510, 330 480, 330 420 Z" fill="#020617" />
+
+  <!-- Glowing Eyes (The "Thinking" AI Interface) -->
+  <g filter="url(#hyperGlow)">
+    <!-- Left Eye -->
+    <path d="M 365 410 L 385 415 L 365 420 Z" fill="#38bdf8" />
+    <circle cx="372" cy="415" r="4" fill="#ffffff" />
+    <!-- Right Eye -->
+    <path d="M 435 410 L 415 415 L 435 420 Z" fill="#38bdf8" />
+    <circle cx="428" cy="415" r="4" fill="#ffffff" />
+  </g>
+
+  <!-- Digital / Crystalline Beard -->
+  <g opacity="0.85">
+    <!-- Center Crystal -->
+    <polygon points="400,450 420,530 400,580 380,530" fill="#cbd5e1" />
+    <polygon points="400,450 420,530 400,580" fill="#94a3b8" />
+    <!-- Left side -->
+    <polygon points="360,455 380,510 370,550 340,490" fill="#64748b" />
+    <polygon points="380,510 400,450 380,530" fill="#475569" />
+    <!-- Right side -->
+    <polygon points="440,455 420,510 430,550 460,490" fill="#64748b" />
+    <polygon points="420,510 400,450 420,530" fill="#94a3b8" />
+    
+    <!-- Glowing internal circuits in the beard -->
+    <polyline points="400,450 400,580" stroke="#38bdf8" stroke-width="2" fill="none" opacity="0.6" filter="url(#subtleGlow)"/>
+    <polyline points="360,455 380,510 400,480" stroke="#38bdf8" stroke-width="1.5" fill="none" opacity="0.4" />
+    <polyline points="440,455 420,510 400,480" stroke="#38bdf8" stroke-width="1.5" fill="none" opacity="0.4" />
+  </g>
+
+  <!-- ================= THE MENTOR STAFF ================= -->
+  <g transform="translate(140, 0)"> <!-- Shift staff to the right -->
+    <!-- Staff Pole -->
+    <rect x="420" y="250" width="14" height="600" fill="url(#staffGrad)" rx="7" />
+    
+    <!-- Staff Base Wraps -->
+    <path d="M 418 500 L 436 510 L 436 525 L 418 515 Z" fill="#0f172a" />
+    <path d="M 418 530 L 436 540 L 436 555 L 418 545 Z" fill="#0f172a" />
+    
+    <!-- Floating Crystal/Node Holder -->
+    <path d="M 405 250 L 427 200 L 449 250 Z" fill="#334155" />
+    <path d="M 427 200 L 449 250 L 427 240 Z" fill="#1e293b" />
+    <path d="M 415 250 L 427 180 L 439 250 Z" fill="#475569" opacity="0.8" />
+    
+    <!-- The Root Node (Glowing Heart of the Staff) -->
+    <g transform="translate(427, 160)">
+      <!-- Massive Energy Core Glow -->
+      <circle cx="0" cy="0" r="80" fill="url(#coreEnergy)" filter="url(#hyperGlow)" />
+      
+      <!-- Outer Orbiting Rings (3D Effect) -->
+      <ellipse cx="0" cy="0" rx="90" ry="25" fill="none" stroke="#818cf8" stroke-width="2" transform="rotate(30)" opacity="0.7">
+        <animateTransform attributeName="transform" type="rotate" from="30" to="390" dur="12s" repeatCount="indefinite" />
+      </ellipse>
+      <ellipse cx="0" cy="0" rx="100" ry="15" fill="none" stroke="#38bdf8" stroke-width="3" stroke-dasharray="10 15" transform="rotate(-45)" filter="url(#subtleGlow)">
+        <animateTransform attributeName="transform" type="rotate" from="-45" to="-405" dur="8s" repeatCount="indefinite" />
+      </ellipse>
+      <ellipse cx="0" cy="0" rx="70" ry="60" fill="none" stroke="#e0f2fe" stroke-width="1" stroke-dasharray="4 8" transform="rotate(75)" opacity="0.5">
+        <animateTransform attributeName="transform" type="rotate" from="75" to="435" dur="15s" repeatCount="indefinite" />
+      </ellipse>
+
+      <!-- Inner Connected Graph inside the core -->
+      <g stroke="#ffffff" stroke-width="1.5" opacity="0.9">
+        <line x1="-20" y1="-10" x2="10" y2="-25" />
+        <line x1="10" y1="-25" x2="25" y2="10" />
+        <line x1="25" y1="10" x2="-5" y2="20" />
+        <line x1="-5" y1="20" x2="-20" y2="-10" />
+        <line x1="-20" y1="-10" x2="25" y2="10" />
+      </g>
+      <circle cx="-20" cy="-10" r="4" fill="#ffffff" />
+      <circle cx="10" cy="-25" r="5" fill="#bae6fd" filter="url(#hyperGlow)"/>
+      <circle cx="25" cy="10" r="4" fill="#ffffff" />
+      <circle cx="-5" cy="20" r="6" fill="#38bdf8" filter="url(#hyperGlow)"/>
+      
+      <!-- Center Singularity -->
+      <circle cx="0" cy="0" r="8" fill="#ffffff" filter="url(#hyperGlow)" />
+    </g>
+  </g>
+
+  <!-- Hand Holding Staff -->
+  <g transform="translate(140, 0)">
+    <path d="M 400 520 C 380 500, 440 480, 450 510 C 460 540, 420 540, 400 520 Z" fill="#475569" />
+    <path d="M 400 520 C 380 500, 440 480, 450 510 C 460 540, 420 540, 400 520 Z" fill="url(#cloakFold)" opacity="0.6"/>
+  </g>
+
+  <!-- ================= FOREGROUND ELEMENTS ================= -->
+  
+  <!-- Floating Knowledge Fragments / Runes / Data Points -->
+  <g fill="#38bdf8" filter="url(#hyperGlow)">
+    <!-- Left side -->
+    <path d="M 180 300 L 190 280 L 200 300 Z" opacity="0.8">
+      <animate attributeName="transform" type="translate" values="0,0; 0,-20; 0,0" dur="4s" repeatCount="indefinite" />
+    </path>
+    <circle cx="120" cy="450" r="3" opacity="0.6">
+      <animate attributeName="cy" values="450; 430; 450" dur="5s" repeatCount="indefinite" />
+    </circle>
+    <rect x="220" y="550" width="6" height="6" transform="rotate(45 223 553)" opacity="0.9">
+      <animate attributeName="transform" type="rotate" values="45 223 553; 225 223 553; 405 223 553" dur="6s" repeatCount="indefinite" />
+    </rect>
+
+    <!-- Right side -->
+    <path d="M 650 350 L 665 340 L 660 360 Z" opacity="0.7">
+      <animate attributeName="transform" type="translate" values="0,0; 0,-15; 0,0" dur="3.5s" repeatCount="indefinite" />
+    </path>
+    <circle cx="700" cy="500" r="4" opacity="0.9">
+      <animate attributeName="cy" values="500; 480; 500" dur="4.5s" repeatCount="indefinite" />
+    </circle>
+    <rect x="620" y="650" width="8" height="8" transform="rotate(15 624 654)" opacity="0.5">
+      <animate attributeName="transform" type="rotate" values="15 624 654; 195 624 654; 375 624 654" dur="7s" repeatCount="indefinite" />
+    </rect>
+  </g>
+
+  <!-- Data Flow Lines around the Sage -->
+  <path d="M 200 700 C 150 500, 300 300, 567 160" fill="none" stroke="#38bdf8" stroke-width="2" opacity="0.3" stroke-dasharray="10 20">
+    <animate attributeName="stroke-dashoffset" from="300" to="0" dur="10s" repeatCount="indefinite" />
+  </path>
+  <path d="M 600 750 C 700 550, 550 400, 567 160" fill="none" stroke="#818cf8" stroke-width="1.5" opacity="0.4" stroke-dasharray="5 15">
+    <animate attributeName="stroke-dashoffset" from="200" to="0" dur="7s" repeatCount="indefinite" />
+  </path>
+
+</svg>
