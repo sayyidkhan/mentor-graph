@@ -23,7 +23,7 @@ Mentor Graph is a tool that:
 ---
 
 ## 1.3 One-Liner
-**“Identify and optimise the mentors shaping your thinking from your AI history.”**
+**“Identify the best mentors that best shape your thinking from your AI conversations.”**
 
 ---
 
