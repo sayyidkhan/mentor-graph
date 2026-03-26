@@ -1,14 +1,26 @@
 import OpenAI from "openai";
 import { DOMAINS, type AnalyzeModelId } from "../schemas/analyze";
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+/**
+ * Lazy client: OpenAI's constructor throws if `apiKey` is missing. A top-level
+ * `new OpenAI({ apiKey: process.env... })` breaks Cloudflare Worker deploy
+ * (upload-time validation runs module init without your local `.env`).
+ */
+function getOpenAI(): OpenAI {
+  const apiKey = process.env.OPENAI_API_KEY?.trim();
+  if (!apiKey) {
+    throw new Error(
+      "OPENAI_API_KEY is missing; set it in .env for local dev or wrangler secret for Workers.",
+    );
+  }
+  return new OpenAI({ apiKey });
+}
 
 export async function extractAndClassify(
   text: string,
   model: AnalyzeModelId,
 ): Promise<{ mentors: string[]; domains: Record<string, string[]> }> {
+  const openai = getOpenAI();
   const response = await openai.chat.completions.create({
     model,
     temperature: 0.2,
