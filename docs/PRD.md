@@ -94,109 +94,103 @@ Extract names of influential people (mentors) from text
 ### Output Example
 ```json
 ["Naval Ravikant", "MJ DeMarco", "Alex Hormozi"]
-4.3 Domain Classification
-Domains (fixed for MVP)
-Wealth
+```
 
-Business
+## 4.3 Domain Classification
 
-Engineering
+### Domains (fixed for MVP)
+- Wealth
+- Business
+- Engineering
+- Investing
 
-Investing
-
-Description
+### Description
 Assign each mentor to one or more domains
 
-Output Example
+### Output Example
+```json
 {
   "Naval Ravikant": ["Wealth", "Investing"],
   "MJ DeMarco": ["Wealth"],
   "Alex Hormozi": ["Business"]
 }
-4.4 Mentor Graph Generator
-Description
+```
+## 4.4 Mentor Graph Generator
+
+### Description
 Convert structured data into a tree/graph representation
 
-Output Example
+### Output Example
+```
 You
 ├── Wealth
 │   ├── Naval Ravikant
 │   └── MJ DeMarco
 ├── Business
 │   └── Alex Hormozi
-Tech Options
-Simple: nested list UI
+```
 
-Advanced: graph visualisation (React Flow / D3.js)
+### Tech Options
+- **Simple**: nested list UI
+- **Advanced**: graph visualisation (React Flow / D3.js)
 
-4.5 Insight & Optimisation Engine
-Description
+## 4.5 Insight & Optimisation Engine
+
+### Description
 Generate insights and basic optimisation suggestions
 
-Example Insights
-"You have no mentors in Investing"
+### Example Insights
+- "You have no mentors in Investing"
+- "Your thinking is heavily skewed towards Engineering"
+- "Your mentor set lacks business monetisation influence"
 
-"Your thinking is heavily skewed towards Engineering"
+### Example Optimisations
+- "Consider adding a business-focused mentor"
+- "Your current mentors are strong in building but weak in distribution"
 
-"Your mentor set lacks business monetisation influence"
+### Logic (POC)
+- Count mentors per domain
+- Detect:
+  - Missing domains
+  - Dominant domains
+- Suggest balancing improvements
 
-Example Optimisations
-"Consider adding a business-focused mentor"
+# 5. 🧠 Future Features
 
-"Your current mentors are strong in building but weak in distribution"
+## 5.1 Thinking Fingerprint
+- % influence per mentor/domain
+- Example: "60% Naval-style thinking"
 
-Logic (POC)
-Count mentors per domain
+## 5.2 Timeline Evolution
+- Track how mentor graph evolves over time
 
-Detect:
+## 5.3 Recommendation Engine
+- Suggest:
+  - missing mentors
+  - relevant books/content
+  - complementary thinking styles
 
-Missing domains
+## 5.4 Auto Sync
+- Browser extension to capture ChatGPT sessions automatically
 
-Dominant domains
+## 5.5 Editable Graph
+- Users can modify:
+  - mentors
+  - domain classifications
 
-Suggest balancing improvements
+# 6. 🏗️ Technical Design
 
-5. 🧠 Future Features
-5.1 Thinking Fingerprint
-% influence per mentor/domain
+## 6.1 Architecture (POC)
+### Frontend
+- React / Next.js
+- Simple UI (input → output)
 
-Example: "60% Naval-style thinking"
+### Backend
+- Python (FastAPI) or Node.js
+- LLM API for extraction + classification
 
-5.2 Timeline Evolution
-Track how mentor graph evolves over time
-
-5.3 Recommendation Engine
-Suggest:
-
-missing mentors
-
-relevant books/content
-
-complementary thinking styles
-
-5.4 Auto Sync
-Browser extension to capture ChatGPT sessions automatically
-
-5.5 Editable Graph
-Users can modify:
-
-mentors
-
-domain classifications
-
-6. 🏗️ Technical Design
-6.1 Architecture (POC)
-Frontend
-React / Next.js
-
-Simple UI (input → output)
-
-Backend
-Python (FastAPI) or Node.js
-
-LLM API for extraction + classification
-
-6.2 Data Flow
+## 6.2 Data Flow
+```
 User Input (text)
         ↓
 LLM / NER Extraction
@@ -212,13 +206,18 @@ Graph Renderer
 Insight & Optimisation Engine
         ↓
 UI Output
-6.3 API Design
-POST /analyze
-Request
+```
+## 6.3 API Design
+### POST /analyze
+#### Request
+```json
 {
   "text": "User chat content..."
 }
-Response
+```
+
+#### Response
+```json
 {
   "mentors": ["Naval Ravikant", "MJ DeMarco"],
   "domains": {
@@ -233,78 +232,69 @@ Response
     "Consider adding a mentor focused on business or monetisation"
   ]
 }
-7. ⚠️ Risks & Constraints
-7.1 Data Quality
-LLM may misidentify mentors
+```
+# 7. ⚠️ Risks & Constraints
 
-Ambiguity in classification
+## 7.1 Data Quality
+- LLM may misidentify mentors
+- Ambiguity in classification
 
-Mitigation
-Confidence scoring
+### Mitigation
+- Confidence scoring
+- Allow manual edits (future)
 
-Allow manual edits (future)
+## 7.2 User Friction
+- Copy-paste input is manual
 
-7.2 User Friction
-Copy-paste input is manual
+### Mitigation
+- Keep UX extremely simple
+- Add browser extension later
 
-Mitigation
-Keep UX extremely simple
+## 7.3 Overengineering Risk
+- Graph visualisation may slow development
 
-Add browser extension later
+### Mitigation
+- Start with simple tree UI
 
-7.3 Overengineering Risk
-Graph visualisation may slow development
+# 8. 🧪 MVP Scope (STRICT)
 
-Mitigation
-Start with simple tree UI
+## MUST HAVE
+- Text input
+- Mentor extraction
+- Domain classification
+- Basic tree output
+- Insights + optimisation suggestions
 
-8. 🧪 MVP Scope (STRICT)
-MUST HAVE
-Text input
+## NICE TO HAVE
+- Graph visualisation
+- Editable nodes
 
-Mentor extraction
+## DO NOT BUILD YET
+- Authentication / accounts
+- Real-time sync
+- Complex analytics
 
-Domain classification
+# 9. 🚀 Build Plan
 
-Basic tree output
+## Day 1–2
+- Input UI
+- API endpoint
+- LLM extraction prompt
 
-Insights + optimisation suggestions
+## Day 3–4
+- Domain classification
+- JSON structuring
 
-NICE TO HAVE
-Graph visualisation
+## Day 5
+- UI rendering (tree)
 
-Editable nodes
+## Day 6
+- Insight + optimisation engine
 
-DO NOT BUILD YET
-Authentication / accounts
+## Day 7
+- Polish + demo
 
-Real-time sync
+# 10. 💡 Key Principle
 
-Complex analytics
-
-9. 🚀 Build Plan
-Day 1–2
-Input UI
-
-API endpoint
-
-LLM extraction prompt
-
-Day 3–4
-Domain classification
-
-JSON structuring
-
-Day 5
-UI rendering (tree)
-
-Day 6
-Insight + optimisation engine
-
-Day 7
-Polish + demo
-
-10. 💡 Key Principle
-Don’t just map mentors
+Don't just map mentors
 Help users choose better ones
-
